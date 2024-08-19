@@ -2,7 +2,7 @@
 # TASK APP CLI 
 
 ## COMMANDS
-```bash
+```shell
 todoapp-cli add taskName taskDescription
 todoapp-cli list {done | in-progress | todo}
 todoapp-cli delete id
