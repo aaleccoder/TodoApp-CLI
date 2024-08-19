@@ -6,28 +6,26 @@ import { Command } from "commander";
 let data: Array<Task> = files.readFile();
 const program = new Command();
 
-const args = process.argv.slice(2);
 
-if (args[0] == "list") {
-  listAllTasks(args[1])
-}
 
-if (args[0] == "add") {
-  addTask(args[1], args[2])
-}
 
-if(args[0] == "delete") {
-  deleteTask(parseInt(args[1]))
-}
-if(args[0] == "mark-done") {
-  markDone(parseInt(args[1]))
-}
-if(args[0] == "mark-in-progress") {
-  markProgress(parseInt(args[1]))
-}
-if(args[0] == "update") {
-  updateTask(parseInt(args[1]), args[2], args[3])
-}
+program.command('add <taskName> <taskDescription>')
+ .action((taskName, taskDescription) => {
+  addTask(taskName, taskDescription);
+})
+program.command('mark-done <id>')
+  .action((id) => markDone(parseInt(id)))
+program.command('mark-in-progress <id>')
+  .action((id) => markProgress(parseInt(id)))
+program.command('delete <id>')
+  .action((id) => deleteTask(parseInt(id)))
+program.command('list <status>')
+.action((status) => {
+  listAllTasks(status);
+})
+
+
+
 function addTask(taskName: string, taskDescription: string) {
   let todo = new Task(data.length + 1, taskName, taskDescription);
   data.push(todo)
@@ -93,5 +91,7 @@ function listAllTasks(status: string) {
     console.log("Unvalid option")
   }
 }
+
+
 
 program.parse(process.argv);
