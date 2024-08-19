@@ -8,7 +8,7 @@ todoapp-cli list {done | in-progress | todo}
 todoapp-cli delete id
 todoapp-cli mark-done id
 todoapp-cli mark-in-progress id
-todoapp-cli update id "Go home and dance" "lol"
+todoapp-cli update 1 "Go home and dance" "lol"
 ```
 
 ## Environment
