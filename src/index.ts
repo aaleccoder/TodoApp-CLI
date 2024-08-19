@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { parse } from "path";
 import files from "./json"
 import { Task } from "./Task";
@@ -12,6 +13,10 @@ const program = new Command();
 program.command('add <taskName> <taskDescription>')
  .action((taskName, taskDescription) => {
   addTask(taskName, taskDescription);
+})
+program.command('update <id> <taskName> <taskDescription>')
+ .action((id, taskName, taskDescription) => {
+  updateTask(id, taskName, taskDescription);
 })
 program.command('mark-done <id>')
   .action((id) => markDone(parseInt(id)))
